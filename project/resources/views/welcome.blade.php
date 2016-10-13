@@ -5,40 +5,57 @@
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+
         <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
+             .menu{
+                 margin-top: 20px;
+                 list-style-type: none;
+             }
+             .man{
+                 border: #aaa 1px solid;
+                 padding: 10px;
+                 width: 100%;
+                 list-style-type: none;
+                 border-radius: 5px;
+             }
         </style>
+
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="col-md-8">
+                    <h2 class="title">Лучшие люди Интернета</h2>
+                    <div class="people">
+                        <div class="man">
+                            <div class="col-md-4">
+                                <img src="s;l">
+                                <div class="clearfix"></div>
+                                <a href="#">Name</a>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                566
+                            </div>
+                            <div class="col-md-2">
+                                <a href="#">+</a>
+                                <div class="clearfix"></div>
+                                <a href="#">-</a>
+                            </div>
+                            <div class="clearfix"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="menu">
+                        <li><a>Вoйти</a></li>
+                        <li><a>Зарегистрироваться</a></li>
+                    </ul>
+                </div>
+
             </div>
         </div>
     </body>

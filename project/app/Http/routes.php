@@ -13,13 +13,17 @@
 
 
 
-//Маршруты аутентификации...
+
 Route::get('auth/login', 'MyAuthController@getLogin');
 Route::post('auth/login', 'MyAuthController@postLogin');
-Route::get('auth/logout', 'MyAuthController@getLogout');
 
-// Маршруты регистрации...
 Route::get('auth/register', 'MyAuthController@getRegister');
 Route::post('auth/register', 'MyAuthController@postRegister');
+
+Route::get('auth/logout', 'MyAuthController@getLogout');
+
+Route::post('votesAllPeople', 'VoteController@votesAllPeople');
+Route::post('voteToMan', 'VoteController@voteToMan');
+
 
 Route::get('/', 'HomeController@index');

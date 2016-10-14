@@ -5,26 +5,9 @@
 
     <div class="col-md-8">
         <h2 class="title">Лучшие люди Интернета</h2>
-        <div class="people">
-            @foreach($users as $user)
-                <div class="man">
-                    <div class="col-md-4">
-                        <img src="{{$user->imagePath }}">
-                        <div class="clearfix"></div>
-                        <a href="#">{{$user->login }}</a>
-                    </div>
-                    <div class="col-md-6 text-center">
-                        {{$user->countVotes }}
-                    </div>
-                    <div class="col-md-2">
-                        <a href="#">+</a>
-                        <div class="clearfix"></div>
-                        <a href="#">-</a>
-                    </div>
-                    <div class="clearfix"></div>
+        <div id="votesAllPeople">
 
-                </div>
-            @endforeach
+
 
         </div>
     </div>
@@ -40,6 +23,60 @@
         @endif
 
     </div>
+
+    <script>
+        $(document).ready(function () {
+            loadPeople(0);
+        });
+
+
+        $(document).on('click' ,".voteAction",function() {
+            var to = $(this).data('to');
+            var vote = $(this).data('vote');
+            console.log(to);
+            console.log(vote);
+            loadPeople(1, to, vote);
+        });
+
+        function loadPeople(isVote, idTo, vote)
+        {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                type: "POST",
+                data : {
+                    isVote: isVote,
+                    idTo: idTo,
+                    vote: vote
+                },
+                url : "/votesAllPeople",
+                success : function(data){
+                    $('#votesAllPeople').html(data);
+                }
+            });
+        }
+
+
+      /*  function voteToMan(isVote, idFrom, vote)
+        {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                type: "POST",
+                url : "/voteToMan",
+                data : {
+                    isVote: isVote,
+                    idFrom: idFrom,
+                    vote: vote
+                },
+                success : function(data){
+                    $('#votesAllPeople').html(data);
+                }
+            });
+        }*/
+    </script>
 
 
 @endsection

@@ -21,9 +21,24 @@
             list-style-type: none;
             border-radius: 5px;
         }
+
+
     </style>
+
+
+
 
 </head>
 <body>
 <div class="container">
     <div class="content">
+
+
+
+        @yield('content')
+
+
+    </div>
+</div>
+</body>
+</html>

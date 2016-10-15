@@ -62,11 +62,18 @@ class VoteController extends Controller
                     ]
                 );
             }
-            else {
+            else if($historyVotes==1) {
                 DB::table('votes')
                     ->where('idTo', '=', $data['idTo'])
                     ->where('idFrom', '=', Auth::user()->id)
                     ->update(['vote' => $data['vote']]);
+            }
+            else
+            {
+                DB::table('votes')
+                    ->where('idTo', '=', $data['idTo'])
+                    ->where('idFrom', '=', Auth::user()->id)
+                    ->delete();
             }
 
 
@@ -90,7 +97,7 @@ class VoteController extends Controller
             return 0;
         if (DB::table('votes')->where('idTo', '=', $data['idTo'])->where('idFrom', '=', Auth::user()->id)->where('vote', '=', $data['vote'])->count() == 0 )
             return 1;
-        else return -1;
+        else return -2;
 
     }
 }

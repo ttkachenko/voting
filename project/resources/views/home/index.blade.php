@@ -5,9 +5,11 @@
 
     <div class="col-md-8">
         <h2 class="title">Лучшие люди Интернета</h2>
+        <div class="col-md-12 text-center hide" id="votesAllPeopleLoader">
+            <img src="loader.gif">
+        </div>
+        <div class="clearfix"></div>
         <div id="votesAllPeople">
-
-
 
         </div>
     </div>
@@ -40,6 +42,8 @@
 
         function loadPeople(isVote, idTo, vote)
         {
+            $('#votesAllPeople').addClass('hide');
+            $('#votesAllPeopleLoader').removeClass('hide');
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -53,29 +57,12 @@
                 url : "/votesAllPeople",
                 success : function(data){
                     $('#votesAllPeople').html(data);
+                    $('#votesAllPeopleLoader').addClass('hide');
+                    $('#votesAllPeople').removeClass('hide');
                 }
             });
         }
 
-
-      /*  function voteToMan(isVote, idFrom, vote)
-        {
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                },
-                type: "POST",
-                url : "/voteToMan",
-                data : {
-                    isVote: isVote,
-                    idFrom: idFrom,
-                    vote: vote
-                },
-                success : function(data){
-                    $('#votesAllPeople').html(data);
-                }
-            });
-        }*/
     </script>
 
 

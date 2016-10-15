@@ -14,51 +14,59 @@ class VoteController extends Controller
 
         $this->voteToMan($request->all());
 
-        $users = User::all();
+        $users = User::where('id', '!=', Auth::user()->id) ->orderBy('countVotes', 'desc')->get();
+        //$users = User::all();
+
         return view("vote.votesAllPeople", ['users' => $users]);
     }
 
     protected function voteToMan(array $data)
     {
-        var_dump($data);
+
         if ($data['isVote'] == 1)
         {
-            $historyVotes = $this->validator($data);
+            $historyVotes = $this->getHistoryVotes($data);
+            if ($historyVotes==-1)
+                return;
+            if ($historyVotes==0)
+            {
+                DB::table('votes')->insert(
+                    [
+                        'idTo' => $data['idTo'],
+                        'vote' => $data['vote'],
+                        'idFrom' => Auth::user()->id,
+                    ]
+                );
+            }
+            else {
+                DB::table('votes')
+                    ->where('idTo', '=', $data['idTo'])
+                    ->where('idFrom', '=', Auth::user()->id)
+                    ->update(['vote' => $data['vote']]);
+            }
 
 
-            DB::table('votes')->insert(
-                [
-                    'idTo' => $data['idTo'],
-                    'vote' => $data['vote'],
-                    'idFrom' => Auth::user()->id,
-                ]
-            );
 
             if ($data['vote'] == 1)
             {
-                DB::table('users')->where('id', '=', $data['idTo'])->increment('countVotes' );
+                DB::table('users')->where('id', '=', $data['idTo'])->increment('countVotes', 1 + $historyVotes);
             }
             else
             {
-                DB::table('users')->where('id', '=', $data['idTo'])->decrement('countVotes');
+                DB::table('users')->where('id', '=', $data['idTo'])->decrement('countVotes', 1 + $historyVotes);
             }
         }
     }
 
     protected function getHistoryVotes(array $data)
     {
-        $res = [
-            "isVote" => 0,
-            "vote" => 0
-        ];
-        $res["isVote"] = DB::table('votes')->where('idTo', '=', $data['idTo'])->where('idFrom', '=', Auth::user()->id)->where('vote', '=', $data['vote'])->count() == 0;
-        if ($res["isVote"]===1)
-            $res["vote"] =  DB::table('votes')->select('vote')->first();
+        if ($data['idTo'] == Auth::user()->id)
+            return -1;
+        if (DB::table('votes')->where('idTo', '=', $data['idTo'])->where('idFrom', '=', Auth::user()->id)->count() ==0 )
+            return 0;
+        if (DB::table('votes')->where('idTo', '=', $data['idTo'])->where('idFrom', '=', Auth::user()->id)->where('vote', '=', $data['vote'])->count() == 0 )
+            return 1;
+        else return -1;
 
-
-        return $res;
     }
-
-
-
 }

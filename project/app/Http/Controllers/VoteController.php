@@ -8,7 +8,6 @@ use App\User;
 use Auth;
 use App\Vote;
 
-
 class VoteController extends Controller
 {
     public function votesAllPeople(Request $request)
@@ -16,16 +15,32 @@ class VoteController extends Controller
 
         $this->voteToMan($request->all());
 
+        $users = User::select('id', 'login', 'countVotes', 'imagePath')->where('id', '!=', Auth::user()->id) ->orderBy('countVotes', 'desc')->get();
 
-        $users = Auth::check()
-            ? DB::table('users')->select('users.id', 'users.countVotes', 'users.login', 'users.imagePath', 'votes.vote')
-                ->leftJoin('votes', 'users.id', '=', 'votes.idTo')
-                ->where('users.id', '!=', Auth::user()->id)
-                ->orderBy('users.countVotes', 'desc')
-                ->get()
-            : User::orderBy('countVotes', 'desc')->get();
+        $curLikes= DB::table('votes')->select('idTo')->where('idFrom', '=', Auth::user()->id)->where('vote', '=', 1)->get();
+        $curLikesArray = array();
+        $curLikesData = collect($curLikes)->map(function($x){ return (array) $x; })->toArray();
+        foreach ($curLikesData as $curLike)
+        {
+            $curLikesArray[] = $curLike['idTo'];
+        }
 
-        
+        $curDislikes= DB::table('votes')->select('idTo')->where('idFrom', '=', Auth::user()->id)->where('vote', '=', 0)->get();
+        $curDislikesData = collect($curDislikes)->map(function($x){ return (array) $x; })->toArray();
+        $curDislikesArray =array();
+        foreach ($curDislikesData as $curDislike)
+        {
+            $curDislikesArray[] = $curDislike['idTo'];
+        }
+
+        foreach ($users as $user)
+        {
+
+            $user['vote'] = in_array( strval($user['id']), $curLikesArray) ? 1 : (in_array(strval($user['id']), $curDislikesArray) ? -1 : 0 );
+
+        }
+
+
         return view("vote.votesAllPeople", ['users' => $users]);
     }
 

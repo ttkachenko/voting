@@ -11,9 +11,10 @@
         <div class="col-md-2">
             @if(Auth::check())
 
-                <a class="btn  voteAction <?php if ($user->vote=='1')  echo 'btn-success'; else echo 'btn-default'; ?>" href="#" data-to="{{ $user->id }}" data-vote="1">+</a>
+                <a class="btn  voteAction <?php if ($user->vote==1)  echo 'btn-success'; else echo 'btn-default'; ?>"
+                   href="#" data-to="{{ $user->id }}" data-vote="1">+</a>
                 <div class="clearfix"></div>
-                <a class="btn  voteAction <?php if ($user->vote=='0')  echo 'btn-danger'; else echo 'btn-default'; ?>"" href="#" data-to="{{ $user->id }}" data-vote="0">-</a>
+                <a class="btn  voteAction <?php if ($user->vote==-1)  echo 'btn-danger'; else echo 'btn-default'; ?>"" href="#" data-to="{{ $user->id }}" data-vote="0">-</a>
 
             @else
 

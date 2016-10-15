@@ -2,6 +2,29 @@
 
 @section('content')
 
+    <div class="col-md-4 user-menu-block">
+        @if(Auth::check())
+            <div class="cur-user-block col-md-8 ">
+                <p>Привет, <a href="#"><?= Auth::user()->login ?></a></p>
+                <div class="user-image">
+                    <img src="<?= Auth::user()->imagePath ?>">
+                    <div class="clearfix"></div>
+                    <a href="auth/logout">Выйти</a>
+                </div>
+                <div class="user-rating">
+                    <?= Auth::user()->countVotes ?>
+                </div>
+
+            </div>
+        @else
+
+            <ul class="menu">
+                <li><a href="auth/login">Вoйти</a></li>
+                <li><a href="auth/register">Зарегистрироваться</a></li>
+            </ul>
+        @endif
+
+    </div>
 
     <div class="col-md-8">
         <h2 class="title">Лучшие люди Интернета</h2>
@@ -13,18 +36,7 @@
 
         </div>
     </div>
-    <div class="col-md-4">
-        @if(Auth::check())
-            <div><a href="auth/logout">Выйти</a></div>
-        @else
 
-            <ul class="menu">
-                <li><a href="auth/login">Вoйти</a></li>
-                <li><a href="auth/register">Зарегистрироваться</a></li>
-            </ul>
-        @endif
-
-    </div>
 
     <script>
         $(document).ready(function () {

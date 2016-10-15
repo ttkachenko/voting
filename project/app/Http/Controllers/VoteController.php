@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use DB;
 use App\User;
 use Auth;
+use App\Vote;
+
 
 class VoteController extends Controller
 {
@@ -14,9 +16,16 @@ class VoteController extends Controller
 
         $this->voteToMan($request->all());
 
-        $users = User::where('id', '!=', Auth::user()->id) ->orderBy('countVotes', 'desc')->get();
-        //$users = User::all();
 
+        $users = Auth::check()
+            ? DB::table('users')->select('users.id', 'users.countVotes', 'users.login', 'users.imagePath', 'votes.vote')
+                ->leftJoin('votes', 'users.id', '=', 'votes.idTo')
+                ->where('users.id', '!=', Auth::user()->id)
+                ->orderBy('users.countVotes', 'desc')
+                ->get()
+            : User::orderBy('countVotes', 'desc')->get();
+
+        
         return view("vote.votesAllPeople", ['users' => $users]);
     }
 

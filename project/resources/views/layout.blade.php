@@ -22,8 +22,35 @@
             width: 100%;
             list-style-type: none;
             border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .cur-user-block
+        {
+            border: #aaa 1px dashed;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 2px;
+        }
+        .user-image, .user-rating
+        {
+            width: 50%;
+            float: left;
         }
 
+        @media (min-width:1200px) {
+            .cur-user-block
+            {
+                float: right;
+
+            }
+        }
+
+        @media (min-width:989px){
+            .user-menu-block
+            {
+                float: right;
+            }
+        }
 
     </style>
 

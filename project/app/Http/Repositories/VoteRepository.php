@@ -23,7 +23,7 @@ class VoteRepository implements VoteInterface
         return  DB::table('votes')
             ->join('users', 'votes.idFrom', '=', 'users.id')
             ->where('votes.idTo', '=', $userIdTo)
-            ->select('users.login', 'votes.vote', 'votes.idFrom', 'votes.dateVote')
+            ->select('users.login', 'votes.vote', 'votes.idFrom', 'votes.dateVote', 'users.isMan')
             ->orderBy('votes.dateVote', 'desc')
             ->get();
     }

@@ -8,9 +8,16 @@ use Validator;
 use Auth;
 use App\Http\Controllers\CodeController;
 use App\Code;
+use App\Http\Interfaces\UserInterface as UserInterface;
 
 class MyAuthController extends Controller
 {
+
+    public function __construct(UserInterface $userRepo)
+    {
+        $this->userRepo = $userRepo;
+    }
+
     public function getRegister()
     {
         return view("auth.register");
@@ -24,8 +31,8 @@ class MyAuthController extends Controller
                 $request, $validator
             );
         }
-
-        $this->create($request->all());
+        $data = $request->all();
+        $this->userRepo->create($data['login'], $data['password'], $data['isMan'], $data['imagePath']);
 
         if (Auth::attempt(['login' => $request->login, 'password' => $request->password])){
             return redirect('/');
@@ -75,18 +82,6 @@ class MyAuthController extends Controller
         ]);
     }
 
-
-    protected function create(array $data)
-    {
-        DB::table('users')->insert(
-            [
-                'login' => $data['login'],
-                'password' => bcrypt($data['password']),
-                'isMan' => 0,
-                'imagePath' => $data['imagePath'],
-            ]
-        );
-    }
 
     protected function getGuard()
     {

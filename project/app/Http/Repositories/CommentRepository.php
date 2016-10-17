@@ -14,8 +14,8 @@ class CommentRepository implements CommentInterface
         return  DB::table('comments')
             ->join('users', 'comments.idFrom', '=', 'users.id')
             ->where('comments.idTo', '=', $userId)
-            ->select('users.login', 'comments.comment', 'comments.dateComment', 'comments.idFrom')
-            ->orderBy('comments.dateComment', 'asc')
+            ->select('users.login', 'comments.comment', 'comments.dateComment', 'comments.idFrom', 'users.isMan')
+            ->orderBy('comments.dateComment', 'desc')
             ->get();
     }
 
@@ -46,7 +46,7 @@ class CommentRepository implements CommentInterface
        return  DB::table('comments')
             ->join('users', 'comments.idFrom', '=', 'users.id')
             ->where('comments.id', '=', $commentId)
-           ->select('users.login', 'comments.comment', 'comments.dateComment', 'comments.idFrom')
+           ->select('users.login', 'comments.comment', 'comments.dateComment', 'comments.idFrom', 'users.isMan')
             ->first();
     }
 

@@ -28,4 +28,9 @@ class UserController extends Controller
             $user['vote'] = $this->voteRepo->getUserVote($userId);
         return view('user.info', ['user' => $user]);
     }
+
+    public function edit()
+    {
+        return view('user.edit');
+    }
 }

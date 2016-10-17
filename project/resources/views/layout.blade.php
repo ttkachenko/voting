@@ -49,6 +49,7 @@
         .history-vote{
             padding: 10px;
             border-radius: 2px;
+            margin-bottom: 10px;
         }
 
         .history-vote-success{

@@ -10,6 +10,19 @@ class UserRepository implements UserInterface
 {
 
     public function getUserById($userId){
-        return User::select('id', 'login', 'countVotes', 'imagePath')->where('id', '=', $userId)->first();
+        return User::select('id', 'login', 'countVotes', 'imagePath', 'isMan')->where('id', '=', $userId)->first();
     }
+
+    public function create($login, $password, $isMan, $imagePath){
+        DB::table('users')->insert(
+            [
+                'login' => $login,
+                'password' => bcrypt($password),
+                'isMan' => (boolean)$isMan,
+                'imagePath' => $imagePath,
+            ]
+        );
+    }
+
+
 }

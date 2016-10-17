@@ -1,7 +1,7 @@
 @foreach($users as $user)
     <div class="man">
         <div class="col-md-4">
-            <img src="{{$user->imagePath }}">
+            <img src="<?php if ($user->imagePath==='')  echo 'user.png'; else echo $user->imagePath; ?>">
             <div class="clearfix"></div>
 
                 <a href="/info/{{$user->id}}">{{$user->login }}</a>

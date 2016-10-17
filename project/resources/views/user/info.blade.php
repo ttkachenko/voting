@@ -20,7 +20,7 @@
             <h3>{{ $user->login }}</h3>
             @if(Auth::check())
                 @if (Auth::user()->id === $user->id)
-                    <a href="#">Изменить информацию о себе</a>
+                    <a href="/edit">Изменить информацию о себе</a>
                 @endif
             @endif
 
@@ -179,7 +179,7 @@
                 url : "/addComment",
                 success : function(data){
                     $('#textComment').val('');
-                    $('#commentsDiv').html($('#commentsDiv').html()+data);
+                    $('#commentsDiv').html(data+$('#commentsDiv').html());
                 },
                 error : function(data){
                     console.log(data)

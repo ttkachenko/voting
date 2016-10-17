@@ -24,6 +24,9 @@ Route::get('auth/logout', 'MyAuthController@getLogout');
 
 Route::post('votesAllPeople', 'VoteController@votesAllPeople');
 Route::post('voteToMan', 'VoteController@voteToMan');
+Route::post('getHistoryVotes', 'VoteController@getHistoryVotes');
+
+Route::get('info/{userId}', 'UserController@info');
 
 
 Route::get('/', 'HomeController@index');

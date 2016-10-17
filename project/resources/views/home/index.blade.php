@@ -5,7 +5,7 @@
     <div class="col-md-4 user-menu-block">
         @if(Auth::check())
             <div class="cur-user-block col-md-8 ">
-                <p>Привет, <a href="#"><?= Auth::user()->login ?></a></p>
+                <p>Привет, <a href="/info/<?= Auth::user()->id ?>"><?= Auth::user()->login ?></a></p>
                 <div class="user-image">
                     <img src="<?= Auth::user()->imagePath ?>">
                     <div class="clearfix"></div>
@@ -71,6 +71,10 @@
                     $('#votesAllPeople').html(data);
                     $('#votesAllPeopleLoader').addClass('hide');
                     $('#votesAllPeople').removeClass('hide');
+                },
+                error : function(data){
+                    console.log(data);
+
                 }
             });
         }

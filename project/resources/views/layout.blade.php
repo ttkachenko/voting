@@ -16,6 +16,9 @@
             margin-top: 20px;
             list-style-type: none;
         }
+        .list-menu{
+            list-style-type: none;
+        }
         .man{
             border: #aaa 1px solid;
             padding: 10px;
@@ -35,6 +38,12 @@
         {
             width: 50%;
             float: left;
+        }
+
+        .user-info
+        {
+            border-bottom: #ccc 3px solid;
+            padding-bottom: 15px;
         }
 
         @media (min-width:1200px) {

@@ -156,6 +156,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        App\Http\Repositories\VoteRepoServiceProvide::class,
+        App\Http\Repositories\UserRepoServiceProvide::class,
+
     ],
 
     /*

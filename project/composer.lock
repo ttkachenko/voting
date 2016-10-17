@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f6716f190d2361bb3ed178cfcbcc5ab4",
-    "content-hash": "949c556a936177fae229ca0b84de7899",
+    "hash": "9e2f15228f95096ff748cd00b0563321",
+    "content-hash": "2858735c6d25bc1de1cb2d70e557a5b6",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -2403,6 +2403,50 @@
                 "testing"
             ],
             "time": "2016-05-22 21:52:33"
+        },
+        {
+            "name": "ozankurt/repoist",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/OzanKurt/Repoist.git",
+                "reference": "03812fcff931849d65765f9cecd451d698030460"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OzanKurt/Repoist/zipball/03812fcff931849d65765f9cecd451d698030460",
+                "reference": "03812fcff931849d65765f9cecd451d698030460",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Kurt\\Repoist\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ozan Kurt",
+                    "email": "hello@ozankurt.com"
+                }
+            ],
+            "description": "Laravel 5 repository generator.",
+            "keywords": [
+                "laravel",
+                "repoist"
+            ],
+            "time": "2015-05-15 19:01:06"
         },
         {
             "name": "phpdocumentor/reflection-common",

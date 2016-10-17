@@ -158,6 +158,7 @@ return [
 
         App\Http\Repositories\VoteRepoServiceProvide::class,
         App\Http\Repositories\UserRepoServiceProvide::class,
+        App\Http\Repositories\CommentRepoServiceProvide::class,
 
     ],
 

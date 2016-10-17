@@ -18,8 +18,10 @@
         </div>
         <div class="col-md-10">
             <h3>{{ $user->login }}</h3>
-            @if(!Auth::check())
-                <a href="#">Изменить информацию о себе</a>
+            @if(Auth::check())
+                @if (Auth::user()->id === $user->id)
+                    <a href="#">Изменить информацию о себе</a>
+                @endif
             @endif
 
             <p>Карма: {{ $user->countVotes }}</p>
@@ -30,7 +32,9 @@
 
                     <a class="btn voteActionMinus voteAction <?php if ($user->vote==-1)  echo 'btn-danger'; else echo 'btn-default'; ?>" href="#" data-to="{{ $user->id }}" data-vote="0">-</a>
 
+
                 @endif
+
             @else
 
                 <a class="btn btn-default" href="/auth/login">+</a>
@@ -49,6 +53,14 @@
     </div>
     <div class="col-md-12 comments-area">
         <h3>Комментарии</h3>
+        <div class="col-md-12 text-center hide" id="commentsDivLoader">
+            <img src="loader.gif">
+        </div>
+        <div id="commentsDiv">
+        </div>
+        <textarea id="textComment"></textarea>
+        <div class="clearfix"></div>
+        <button id="addComment" data-to="{{$user->id}}">Написать</button>
     </div>
 
 
@@ -56,12 +68,19 @@
     <script>
         $(document).ready(function () {
             getHistoryVotes({{$user->id}});
+            getComments({{$user->id}});
         });
 
         $(document).on('click' ,".voteAction",function() {
             var idTo = $(this).data('to');
             var vote = $(this).data('vote');
             voteToMan(idTo, vote)
+        });
+
+        $(document).on('click' ,"#addComment",function() {
+            var idTo = $(this).data('to');
+            var comment = $('#textComment').val();
+            addComment(idTo, comment);
         });
 
         function voteToMan(idTo, vote)
@@ -80,9 +99,17 @@
                     $('.voteAction').removeClass('btn-success');
                     $('.voteAction').removeClass('btn-danger');
                     if (data==1)
+                    {
+                        $('.voteActionMinus').addClass('btn-default');
                         $('.voteActionPlus').addClass('btn-success');
+                    }
+
                     if (data==-1)
+                    {
                         $('.voteActionMinus').addClass('btn-danger');
+                        $('.voteActionPlus').addClass('btn-default');
+                    }
+
                     else $('.voteAction').addClass('btn-default');
                     getHistoryVotes(idTo);
                 },
@@ -91,7 +118,6 @@
 
         function getHistoryVotes(idTo)
         {
-            console.log(idTo);
             $('#historyVotes').html('');
             $('#historyVotesLoader').removeClass('hide');
             $.ajax({
@@ -113,5 +139,52 @@
             });
         }
 
+
+        function getComments(idTo)
+        {
+            $('#commentsDiv').html('');
+            $('#commentsDivLoader').removeClass('hide');
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                type: "POST",
+                data : {
+                    idTo: idTo
+                },
+                url : "/getComments",
+                success : function(data){
+                    $('#commentsDivLoader').addClass('hide');
+                    $('#commentsDiv').html(data);
+                },
+                error : function(data){
+                    console.log(data)
+                },
+            });
+        }
+
+
+
+        function addComment(idTo, comment)
+        {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                type: "POST",
+                data : {
+                    idTo: idTo,
+                    comment: comment
+                },
+                url : "/addComment",
+                success : function(data){
+                    $('#textComment').val('');
+                    $('#commentsDiv').html($('#commentsDiv').html()+data);
+                },
+                error : function(data){
+                    console.log(data)
+                },
+            });
+        }
     </script>
 @endsection

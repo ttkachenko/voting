@@ -8,12 +8,14 @@ use App\Http\Requests;
 use DB;
 use App\User;
 use Auth;
+use App\Comment;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        var_dump(date( "Y-m-d H:i" ));
+
+
         return view("home.index");
     }
 }

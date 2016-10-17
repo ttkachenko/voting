@@ -26,6 +26,9 @@ Route::post('votesAllPeople', 'VoteController@votesAllPeople');
 Route::post('voteToMan', 'VoteController@voteToMan');
 Route::post('getHistoryVotes', 'VoteController@getHistoryVotes');
 
+Route::post('getComments', 'CommentController@getComments');
+Route::post('addComment', 'CommentController@addComment');
+
 Route::get('info/{userId}', 'UserController@info');
 
 

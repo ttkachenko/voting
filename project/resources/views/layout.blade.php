@@ -46,6 +46,19 @@
             padding-bottom: 15px;
         }
 
+        .history-vote{
+            padding: 10px;
+            border-radius: 2px;
+        }
+
+        .history-vote-success{
+            background: #449d4480;
+        }
+
+        .history-vote-danger{
+            background: #f0999699;
+        }
+
         @media (min-width:1200px) {
             .cur-user-block
             {

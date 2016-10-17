@@ -14,7 +14,7 @@
     </div>
     <div class="col-md-12 user-info">
         <div class="col-md-2">
-            <img src="#">
+            <img src="<?php if ($user->imagePath==='')  echo '/user.png'; else echo $user->imagePath; ?>">
         </div>
         <div class="col-md-10">
             <h3>{{ $user->login }}</h3>

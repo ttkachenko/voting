@@ -59,6 +59,16 @@
         .history-vote-danger{
             background: #f0999699;
         }
+        .cur-user-block img{
+            width:40px;
+        }
+
+        .user-info img{
+            margin-top:20px;
+        }
+        .user-menu-block .user-rating{
+            font-size: 22px;
+        }
 
         @media (min-width:1200px) {
             .cur-user-block

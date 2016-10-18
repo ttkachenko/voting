@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -9,8 +8,9 @@ use Auth;
 use App\Http\Controllers\CodeController;
 use App\Code;
 use App\Http\Interfaces\UserInterface as UserInterface;
-use \Illuminate\Database\QueryException as QueryException;
+use Illuminate\Database\QueryException as QueryException;
 use Illuminate\Support\Facades\Input;
+use Intervention\Image\Facades\Image;
 
 class MyAuthController extends Controller
 {
@@ -41,7 +41,7 @@ class MyAuthController extends Controller
 
             $filename = time(). '-' .$file->getClientOriginalName();
 
-            $file->move(public_path().'/avatars/', $filename);
+            Image::make($file)->resize(50, 50)->save("avatars/".$filename);
         }
 
         try{
@@ -54,7 +54,7 @@ class MyAuthController extends Controller
         }
         catch (QueryException $e)
         {
-            $validator->errors()->add('login', "Введите другой логин. Введенный уже занят");
+            $validator->errors()->add('login', "Такой логин уже есть");
             $this->throwValidationException(
                 $request, $validator
             );
@@ -76,7 +76,7 @@ class MyAuthController extends Controller
 
         if (!$isHuman)
         {
-            $validator->errors()->add('capture', "Неверный текст с картинки");
+            $validator->errors()->add('capture', "Текст с картинки введен неверно");
             $this->throwValidationException(
                 $request, $validator
             );
@@ -93,7 +93,6 @@ class MyAuthController extends Controller
             );
         }
 
-
     }
 
     public function getLogout()
@@ -106,11 +105,11 @@ class MyAuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'login' => 'required',
-            'password' => 'required|min:6',
+            'login' => 'required|between:4,15|unique:users|regex:/(^[A-Za-z0-9 ]+$)+/',
+            'password' => 'required|between:5,25|regex:*[0-9]*',
+            'image' => 'max:5120|mimes:jpeg,jpg,gif,png',
         ]);
     }
-
 
 
     protected function getGuard()

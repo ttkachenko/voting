@@ -42,13 +42,13 @@
             <div class="col-md-7">{{ Auth::user()->login }}</div>
         </div>
         <div class="col-md-12 form-group">
-            <label class="col-md-5">Аватар</label>
-            <div class="col-md-7"><input type="file" name="image"></div>
+            <label class="col-md-5" for="image">Аватар</label>
+            <div class="col-md-7"><input type="file" name="image" id="image"></div>
         </div>
         <div class="col-md-12 form-group">
-            <label class="col-md-5">Пол</label>
+            <label class="col-md-5" for="isMan">Пол</label>
             <div class="col-md-7">
-                <select name="isMan">
+                <select name="isMan" id="isMan">
                     <option value="1">Мужской</option>
                     <option value="0" <?php if (!Auth::user()->isMan)  echo "selected='selected'"; else echo ''; ?>>Женский</option>
                 </select>

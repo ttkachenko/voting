@@ -16,26 +16,32 @@
         @if ($errors->has())
                 <div class="col-md-12 form-group">
                     <div class="col-md-5"></div>
-                    <div class="col-md-7">
+                    <div class="col-md-7 error-block">
+                        <img src="/warning.png">
+                        <ul>
                         @foreach($errors->all() as $error)
                             <li> {{ $error }}</li>
                         @endforeach
+                        </ul>
                     </div>
                 </div>
         @endif
         <div class="col-md-12 form-group">
-            <label class="col-md-5">Логин</label>
-            <div class="col-md-7"><input type="text" name="login"></div>
+            <label class="col-md-5" for="login">Логин</label>
+            <div class="col-md-7"><input type="text" name="login" id="login"></div>
         </div>
         <div class="col-md-12 form-group">
-            <label class="col-md-5">Пaроль</label>
-            <div class="col-md-7"><input type="password" name="password"></div>
+            <label class="col-md-5" for="password">Пaроль</label>
+            <div class="col-md-7">
+                <input type="password" name="password" id="password">
+                <input type="checkbox" id="show-pass"> показать пароль
+            </div>
         </div>
 
         <div class="col-md-12 form-group">
-            <label class="col-md-5">Пол</label>
+            <label class="col-md-5" for="isMan">Пол</label>
             <div class="col-md-7">
-                <select name="isMan">
+                <select name="isMan" id="isMan">
                     <option value="1">Мужской</option>
                     <option value="0">Женский</option>
                 </select>
@@ -43,8 +49,8 @@
         </div>
 
         <div class="col-md-12 form-group">
-            <label class="col-md-5">Aватар</label>
-            <div class="col-md-7"><input type="file" name="image"></div>
+            <label class="col-md-5" for="image">Aватар</label>
+            <div class="col-md-7"><input type="file" name="image" id="image"></div>
         </div>
 
         <div class="col-md-12 form-group">
@@ -53,4 +59,15 @@
         </div>
     </form>
 
+
+    <script>
+
+        $(document).on('change' ,"#show-pass",function() {
+            if($(this).is(':checked'))
+                $('#password').attr('type', 'text');
+
+            else $('#password').attr('type', 'password');
+
+        });
+    </script>
 @endsection

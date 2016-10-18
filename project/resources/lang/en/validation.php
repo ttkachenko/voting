@@ -80,6 +80,7 @@ return [
     'unique'               => 'The :attribute has already been taken.',
     'url'                  => 'The :attribute format is invalid.',
 
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -92,8 +93,20 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'login' => [
+            'required' => 'Введите логин',
+            'between' => 'Логин должен быть от :min до :max символов',
+            'unique'  => 'Такой логин уже есть',
+            'regex'  => 'Логин должен состоять из букв латинского алфавита и,возможно, цифр',
+        ],
+        'password' => [
+            'required' => 'Введите пароль',
+            'between' => 'Пароль должен быть от :min до :max символов',
+            'regex'  => 'Пароль должен содержать хотя бы 1 цифру',
+        ],
+        'image' => [
+            'max' => 'Аватар не должен превышать по размеру 5 MБ',
+            'mimes' => 'Аватар должен иметь расширение .jpeg, .jpg, .gif или .png',
         ],
     ],
 

@@ -29,12 +29,12 @@
         </div>
     @endif
     <div class="col-md-12 form-group">
-        <label class="col-md-5">Логин</label>
-        <div class="col-md-7"><input type="text" name="login"></div>
+        <label class="col-md-5" for="login">Логин</label>
+        <div class="col-md-7"><input type="text" name="login" id="login"></div>
     </div>
     <div class="col-md-12 form-group">
-        <label class="col-md-5">Пароль</label>
-        <div class="col-md-7"><input type="password" name="password"></div>
+        <label class="col-md-5" for="password">Пароль</label>
+        <div class="col-md-7"><input type="password" name="password" id="password"></div>
     </div>
     <div class="col-md-12 form-group">
         <label class="col-md-5"></label>

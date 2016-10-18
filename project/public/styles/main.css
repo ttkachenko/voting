@@ -1,0 +1,135 @@
+  .menu{
+            margin-top: 20px;
+            list-style-type: none;
+        }
+        .list-menu{
+            list-style-type: none;
+        }
+        .man{
+            border: #aaa 1px solid;
+            padding: 10px;
+            width: 100%;
+            list-style-type: none;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .cur-user-block
+        {
+            border: #aaa 1px dashed;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 2px;
+        }
+        .user-image, .user-rating
+        {
+            width: 50%;
+            float: left;
+        }
+
+        .user-info
+        {
+            border-bottom: #ccc 3px solid;
+            padding-bottom: 15px;
+        }
+
+        .history-vote{
+            padding: 10px;
+            border-radius: 2px;
+            margin-bottom: 10px;
+        }
+
+        .history-vote-success{
+            background: #449d4480;
+        }
+
+        .history-vote-danger{
+            background: #f0999699;
+        }
+        .cur-user-block img{
+            width:40px;
+        }
+
+        .user-info img{
+            margin-top:20px;
+        }
+        .user-menu-block .user-rating{
+            font-size: 22px;
+        }
+
+        .auth
+        {
+
+            margin-left: 10%;
+        }
+
+        .auth label
+        {
+            text-align: right;
+            font-weight: 500;
+        }
+
+        .auth .left-block, .auth .right-block{
+            width: 50%;
+            float: left;
+            padding-left: 15px;
+
+        }
+
+        .error-block
+        {
+            background: #f0999699;
+            padding: 15px 10px;
+        }
+        .error-block ul{
+            margin: 5px 0 0 0;
+            float:left;
+	    width: 70%;
+        }
+        .error-block li{
+            list-style-type: none;
+        }
+        .error-block img{
+            float:left;
+        }
+
+        .voteButton{
+            margin-top: 5px;
+            width: 40px;
+        }
+        .man img{
+            width: 64px;
+            height:64px;
+        }
+        .man .login{
+            width: 64px;
+        }
+
+        .man .carma{
+            margin-top: 25px;
+            font-size: 22px;
+        }
+
+
+        @media (min-width:1200px) {
+            .cur-user-block
+            {
+                float: right;
+
+            }
+        }
+
+        @media (min-width:989px){
+            .user-menu-block
+            {
+                float: right;
+
+            }
+        }
+
+        @media (max-width:1000px){
+            .user-menu-block .cur-user-block
+            {
+                float: left;
+                width:100%;
+            }
+        }

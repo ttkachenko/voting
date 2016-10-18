@@ -10,6 +10,7 @@ use Auth;
 use App\Http\Interfaces\UserInterface as UserInterface;
 use App\Http\Interfaces\VoteInterface as VoteInterface;
 use Illuminate\Support\Facades\Input;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -49,7 +50,7 @@ class UserController extends Controller
 
             $filename = time(). '-' .$file->getClientOriginalName();
 
-            $file->move(public_path().'/avatars/', $filename);
+            Image::make($file)->resize(50, 50)->save("avatars/".$filename);
         }
 
         $this->userRepo->editCurrentUser($data['isMan'], $filename);

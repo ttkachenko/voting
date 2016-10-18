@@ -46,7 +46,7 @@
     <div class="col-md-12 history-votes-area">
         <h3>История</h3>
         <div class="col-md-12 text-center hide" id="historyVotesLoader">
-            <img src="loader.gif">
+            <img src="/loader.gif">
         </div>
         <div id="historyVotes">
         </div>
@@ -54,7 +54,7 @@
     <div class="col-md-12 comments-area">
         <h3>Комментарии</h3>
         <div class="col-md-12 text-center hide" id="commentsDivLoader">
-            <img src="loader.gif">
+            <img src="/loader.gif">
         </div>
         <div id="commentsDiv">
         </div>

@@ -23,7 +23,7 @@
                 <li><a href="auth/register">Зарегистрироваться</a></li>
             </ul>
         @endif
-
+            <div class="clearfix"></div>
     </div>
 
     <div class="col-md-8">

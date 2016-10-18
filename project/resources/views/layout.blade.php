@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Laravel</title>
+    <title>Лучшие Люди</title>
     <meta name="_token" content="<?php echo csrf_token(); ?>">
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -21,7 +21,6 @@
     <div class="content">
 
         @yield('content')
-
 
     </div>
 </div>

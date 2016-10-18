@@ -108,6 +108,12 @@
             margin-top: 25px;
             font-size: 22px;
         }
+	.comment p{
+		color:#aaa;
+	}
+.required{
+border: red 1px solid;
+}
 
 
         @media (min-width:1200px) {

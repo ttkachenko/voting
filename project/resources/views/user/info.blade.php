@@ -32,7 +32,6 @@
 
                     <a class="btn voteActionMinus voteAction <?php if ($user->vote==-1)  echo 'btn-danger'; else echo 'btn-default'; ?>" href="#" data-to="{{ $user->id }}" data-vote="0">-</a>
 
-
                 @endif
 
             @else
@@ -66,7 +65,6 @@
     </div>
 
 
-
     <script>
         $(document).ready(function () {
             getHistoryVotes({{$user->id}});
@@ -80,9 +78,17 @@
         });
 
         $(document).on('click' ,"#addComment",function() {
+            $('#textComment').removeClass('required');
             var idTo = $(this).data('to');
             var comment = $('#textComment').val();
-            addComment(idTo, comment);
+            if (comment=="" || comment.replace(/^\s*/,'').replace(/\s*$/,'')=="")
+            {
+                $('#textComment').addClass('required');
+            }
+            else {
+                addComment(idTo, comment);
+            }
+
         });
 
         function voteToMan(idTo, vote)

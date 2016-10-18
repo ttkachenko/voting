@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
+    <link href="{{ captcha_layout_stylesheet_url() }}" type="text/css" rel="stylesheet">
 
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 
@@ -87,6 +88,22 @@
             float: left;
             padding-left: 15px;
 
+        }
+
+        .error-block
+        {
+            background: #f0999699;
+            padding: 15px 10px;
+        }
+        .error-block ul{
+            margin: 5px 0 0 0;
+            float:left;
+        }
+        .error-block li{
+            list-style-type: none;
+        }
+        .error-block img{
+            float:left;
         }
 
 

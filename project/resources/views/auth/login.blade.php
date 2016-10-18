@@ -1,3 +1,5 @@
+
+
 @extends('layout')
 
 @section('content')
@@ -16,10 +18,13 @@
     @if ($errors->has())
         <div class="col-md-12 form-group">
             <div class="col-md-5"></div>
-            <div class="col-md-7">
+            <div class="col-md-7 error-block">
+                <img src="/warning.png">
+                <ul>
                 @foreach($errors->all() as $error)
-                    <li> {{ $error }}</li>
+                     <li>{{ $error }}</li>
                 @endforeach
+                </ul>
             </div>
         </div>
     @endif
@@ -32,9 +37,15 @@
         <div class="col-md-7"><input type="password" name="password"></div>
     </div>
     <div class="col-md-12 form-group">
-        <label class="col-md-5">Текст с картинки</label>
-        <div class="col-md-7"><input type="text" name="text"></div>
+        <label class="col-md-5"></label>
+        <div class="col-md-7">{!! captcha_image_html('ExampleCaptcha') !!}</div>
     </div>
+
+    <div class="col-md-12 form-group">
+        <label class="col-md-5">Текст с картинки</label>
+        <div class="col-md-7"><input type="text" id="CaptchaCode" name="CaptchaCode"></div>
+    </div>
+
     <div class="col-md-12 form-group">
         <div class="col-md-5"></div>
         <div class="col-md-7"><button type="submit">Войти</button></div>

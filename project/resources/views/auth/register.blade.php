@@ -6,7 +6,7 @@
         <a class="pull-left" href="/">&larr; на главную</a>
         <a class="pull-right" href="/auth/login">Войти</a>
     </div>
-    <form class="auth col-md-8" method="POST" action="/auth/register">
+    <form class="auth col-md-8" method="POST" action="/auth/register" enctype="multipart/form-data">
         {!! csrf_field() !!}
 
         <div class="col-md-12 form-group">
@@ -43,8 +43,8 @@
         </div>
 
         <div class="col-md-12 form-group">
-            <label class="col-md-5">Imagre</label>
-            <div class="col-md-7"><input type="text" name="imagePath"></div>
+            <label class="col-md-5">Aватар</label>
+            <div class="col-md-7"><input type="file" name="image"></div>
         </div>
 
         <div class="col-md-12 form-group">

@@ -42,19 +42,15 @@ class UserController extends Controller
         if(!Auth::check())
             return view('errors.503', ['error' => "Please login!"]);
         $data = $request->all();
-        $filename = Auth::user()->imagePath;
 
+        $filename = Auth::user()->imagePath;
         if($request->hasFile('image')) {
             $file = Input::file('image');
 
-
             $filename = time(). '-' .$file->getClientOriginalName();
-
 
             $file->move(public_path().'/avatars/', $filename);
         }
-
-
 
         $this->userRepo->editCurrentUser($data['isMan'], $filename);
         return redirect('/edit');

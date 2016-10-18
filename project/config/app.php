@@ -160,6 +160,8 @@ return [
         App\Http\Repositories\UserRepoServiceProvide::class,
         App\Http\Repositories\CommentRepoServiceProvide::class,
 
+        LaravelCaptcha\Providers\LaravelCaptchaServiceProvider::class,
+
     ],
 
     /*

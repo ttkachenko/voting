@@ -9,6 +9,7 @@ use Auth;
 
 use App\Http\Interfaces\UserInterface as UserInterface;
 use App\Http\Interfaces\VoteInterface as VoteInterface;
+use Illuminate\Support\Facades\Input;
 
 class UserController extends Controller
 {
@@ -29,8 +30,33 @@ class UserController extends Controller
         return view('user.info', ['user' => $user]);
     }
 
-    public function edit()
+    public function getEdit()
     {
+        if(!Auth::check())
+            return view('errors.503', ['error' => "Please login!"]);
         return view('user.edit');
+    }
+
+    public function postEdit(Request $request)
+    {
+        if(!Auth::check())
+            return view('errors.503', ['error' => "Please login!"]);
+        $data = $request->all();
+        $filename = Auth::user()->imagePath;
+
+        if($request->hasFile('image')) {
+            $file = Input::file('image');
+
+
+            $filename = time(). '-' .$file->getClientOriginalName();
+
+
+            $file->move(public_path().'/avatars/', $filename);
+        }
+
+
+
+        $this->userRepo->editCurrentUser($data['isMan'], $filename);
+        return redirect('/edit');
     }
 }

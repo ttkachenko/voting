@@ -7,7 +7,7 @@
             <div class="cur-user-block col-md-8 ">
                 <p>Привет, <a href="/info/<?= Auth::user()->id ?>"><?= Auth::user()->login ?></a></p>
                 <div class="user-image">
-                    <img src="<?php if (Auth::user()->imagePath==='')  echo '/user.png'; else echo Auth::user()->imagePath; ?>">
+                    <img src="<?php if (Auth::user()->imagePath==='')  echo '/user.png'; else echo "/avatars/".Auth::user()->imagePath; ?>">
                     <div class="clearfix"></div>
                     <a href="auth/logout">Выйти</a>
                 </div>

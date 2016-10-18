@@ -30,7 +30,8 @@ Route::post('getComments', 'CommentController@getComments');
 Route::post('addComment', 'CommentController@addComment');
 
 Route::get('info/{userId}', 'UserController@info');
-Route::get('edit', 'UserController@edit');
+Route::get('edit', 'UserController@getEdit');
+Route::post('edit', 'UserController@postEdit');
 
 
 Route::get('/', 'HomeController@index');

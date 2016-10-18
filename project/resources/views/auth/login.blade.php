@@ -6,7 +6,7 @@
     <a class="pull-left" href="/">&larr; на главную</a>
     <a class="pull-right" href="/auth/register">Зарегистрироваться</a>
 </div>
-<form class="auth col-md-12" method="POST" action="/auth/login">
+<form class="auth col-md-8" method="POST" action="/auth/login">
     {!! csrf_field() !!}
 
     <div class="col-md-12 form-group">

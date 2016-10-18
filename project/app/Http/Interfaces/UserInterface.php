@@ -8,4 +8,6 @@ interface UserInterface
     public function getUserById($userId);
 
     public function create($login, $password, $isMan, $imagePath);
+
+    public function editCurrentUser($isMan, $imagePath);
 }

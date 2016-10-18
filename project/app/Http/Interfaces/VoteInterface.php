@@ -10,4 +10,5 @@ interface VoteInterface
     public function getHistoryVotesByUserIdTo($userIdTo);
 
     public function voteToMan($idTo, $vote);
+
 }

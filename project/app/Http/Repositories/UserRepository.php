@@ -25,4 +25,13 @@ class UserRepository implements UserInterface
     }
 
 
+    public function editCurrentUser($isMan, $imagePath)
+    {
+        DB::table('users')
+            ->where('id', '=', Auth::user()->id)
+            ->update(['isMan' => (boolean)$isMan, 'imagePath' => $imagePath]);
+    }
+
+
+
 }

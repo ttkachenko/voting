@@ -70,6 +70,27 @@
             font-size: 22px;
         }
 
+        .auth
+        {
+
+            margin-left: 10%;
+        }
+
+        .auth label
+        {
+            text-align: right;
+            font-weight: 500;
+        }
+
+        .auth .left-block, .auth .right-block{
+            width: 50%;
+            float: left;
+            padding-left: 15px;
+
+        }
+
+
+
         @media (min-width:1200px) {
             .cur-user-block
             {

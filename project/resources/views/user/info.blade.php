@@ -24,7 +24,7 @@
                 @endif
             @endif
 
-            <p>Карма: {{ $user->countVotes }}</p>
+            <p id="curCarma">Карма: {{ $user->countVotes }}</p>
             @if(Auth::check())
                 @if (Auth::user()->id !== $user->id)
                     <a class="btn voteActionPlus voteAction <?php if ($user->vote==1)  echo 'btn-success'; else echo 'btn-default'; ?>"
@@ -98,15 +98,16 @@
                 },
                 url : "/voteToMan",
                 success : function(data){
+                    $('#curCarma').html("Карма: "+data.countVotes);
                     $('.voteAction').removeClass('btn-success');
                     $('.voteAction').removeClass('btn-danger');
-                    if (data==1)
+                    if (data.curVote==1)
                     {
                         $('.voteActionMinus').addClass('btn-default');
                         $('.voteActionPlus').addClass('btn-success');
                     }
 
-                    if (data==-1)
+                    if (data.curVote==-1)
                     {
                         $('.voteActionMinus').addClass('btn-danger');
                         $('.voteActionPlus').addClass('btn-default');

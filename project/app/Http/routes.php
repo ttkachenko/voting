@@ -12,8 +12,6 @@
 */
 
 
-
-
 Route::get('auth/login', 'MyAuthController@getLogin');
 Route::post('auth/login', 'MyAuthController@postLogin');
 
@@ -35,3 +33,4 @@ Route::post('edit', 'UserController@postEdit');
 
 
 Route::get('/', 'HomeController@index');
+

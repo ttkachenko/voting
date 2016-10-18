@@ -22,11 +22,15 @@ class MyAuthController extends Controller
 
     public function getRegister()
     {
+        if(Auth::check())
+            return redirect("/");
         return view("auth.register");
     }
 
     public function postRegister(Request $request)
     {
+        if(Auth::check())
+            return redirect("/");
        $validator = $this->validator($request->all());
         if ($validator->fails()) {
             $this->throwValidationException(
@@ -63,11 +67,15 @@ class MyAuthController extends Controller
 
     public function getLogin()
     {
+        if(Auth::check())
+            return redirect("/");
         return view("auth.login");
     }
 
     public function postLogin(Request $request)
     {
+        if(Auth::check())
+            return redirect("/");
         $validator = Validator::make([], [
         ]);
 
@@ -97,6 +105,8 @@ class MyAuthController extends Controller
 
     public function getLogout()
     {
+        if(!Auth::check())
+            return redirect("/");
         Auth::guard($this->getGuard())->logout();
         return redirect('/');
     }

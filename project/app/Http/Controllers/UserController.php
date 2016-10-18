@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use Auth;
-
 use App\Http\Interfaces\UserInterface as UserInterface;
 use App\Http\Interfaces\VoteInterface as VoteInterface;
 use Illuminate\Support\Facades\Input;

@@ -30,10 +30,13 @@
         @if ($errors->has())
             <div class="col-md-12 form-group">
                 <div class="col-md-5"></div>
-                <div class="col-md-7">
+                <div class="col-md-7 error-block">
+                    <img src="/warning.png">
+                    <ul>
                     @foreach($errors->all() as $error)
                         <li> {{ $error }}</li>
                     @endforeach
+                    </ul>
                 </div>
             </div>
         @endif

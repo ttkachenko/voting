@@ -8,6 +8,7 @@ use App\Http\Interfaces\UserInterface as UserInterface;
 use App\Http\Interfaces\VoteInterface as VoteInterface;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\Facades\Image;
+use Validator;
 
 class UserController extends Controller
 {
@@ -39,6 +40,15 @@ class UserController extends Controller
     {
         if(!Auth::check())
             return view('errors.503', ['error' => "Please login!"]);
+
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
         $data = $request->all();
 
         $filename = Auth::user()->imagePath;
@@ -52,5 +62,12 @@ class UserController extends Controller
 
         $this->userRepo->editCurrentUser($data['isMan'], $filename);
         return redirect('/edit');
+    }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'image' => 'max:5120|mimes:jpeg,jpg,gif,png',
+        ]);
     }
 }

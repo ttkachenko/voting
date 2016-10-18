@@ -19,7 +19,6 @@ class VoteController extends Controller
 
     public function votesAllPeople(Request $request)
     {
-
         $users = $this->voteRepo->votesAllPeople($request->all());
 
         return view("vote.votesAllPeople", ['users' => $users]);
